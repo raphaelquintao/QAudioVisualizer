@@ -24,9 +24,12 @@ Demo Mirror:
 ### Python
 
 - Python 3
-- Numpy
+- Numpy (numpy)
+    - `pip3 install numpy`
+- SciPy (scipy)
+    - `pip3 install scipy`
 - Python GTK (PyGObject)
-
+    - `pip3 intall pygoobject`
 
 ## Compiling C Library
 

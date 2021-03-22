@@ -24,7 +24,7 @@ def qprint(*args, color="info", bold=False, blink=False):
     print(*args, sep=' ', end= colors['reset'] + '\n', flush=True)
 
 
-class Easing():
+class Easing(object):
     from math import sqrt, pow, sin, cos
     from math import pi as M_PI
     M_PI_2 = M_PI * 2
@@ -277,7 +277,6 @@ class QAudio(object):
     def __init__(self):
         dir_base = self.os.path.dirname(self.os.path.realpath(__file__))
         dir_base += '/qaudio'
-        # dir_base = "/media/Data/Workspace/Projects-C-C++/AudioMonitor/cmake-build-debug"
 
         self.qaudio = self.ctypes.CDLL("%s/%s" % (dir_base, 'libqaudio.so'))
         self.running = False

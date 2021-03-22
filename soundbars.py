@@ -35,7 +35,7 @@ class SoundWindow(Gtk.Window):
         self.set_border_width(0)
         self.set_position(Gtk.WindowPosition.CENTER)
         # self.set_keep_above(True)
-        self.set_keep_below(True)
+        # self.set_keep_below(True)
 
 
         # Set Transparency

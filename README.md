@@ -4,9 +4,14 @@ Non GPU and Low CPU usage GTK Audio Visualizer
 
 ![Demo2](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo2.gif)
 
-Video 2:
+![Demo1](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo1.gif)
+
+Demo no Mirror:
 [mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo2.mp4)
 [flv](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo2.flv)
+
+Demo Mirror:
+[mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo1.mp4)
 
 
 ## Requirements

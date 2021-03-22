@@ -2,7 +2,12 @@ QAudioVisualizer
 ===
 Non GPU and Low CPU usage GTK Audio Visualizer
 
-![Game Process](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo.gif)
+![Demo](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo.gif)
+
+Video:
+[mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo.mp4)
+[flv](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo.flv)
+
 
 ## Requirements
 

@@ -29,17 +29,15 @@ Demo Mirror:
 - SciPy (scipy)
     - `pip3 install scipy`
 
-## Compiling C Library
+## Compiling C Library 
 
- - Compiling c library
-    
-    `cd qaudio`\
-    `make`
+`cd qaudio` \
+`make`
 
 
 ## Usage
 
-`soundbars.py [-h] [--size SIZE] [--max_fps MAX_FPS] [--bars BARS] [--space SPACE] [--opacity OPACITY] [--fps] [--no_mirror]`
+`./soundbars.py [-h] [--size SIZE] [--max_fps MAX_FPS] [--bars BARS] [--space SPACE] [--opacity OPACITY] [--fps] [--no_mirror]`
 
 
 Parameter | Description 

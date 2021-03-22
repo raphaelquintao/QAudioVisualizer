@@ -28,8 +28,6 @@ Demo Mirror:
     - `pip3 install numpy`
 - SciPy (scipy)
     - `pip3 install scipy`
-- Python GTK (PyGObject)
-    - `pip3 intall pygoobject`
 
 ## Compiling C Library
 

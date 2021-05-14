@@ -13,6 +13,8 @@ Demo no Mirror:
 Demo Mirror:
 [mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo1.mp4)
 
+Live Demo
+[twitch.tv/ChillBeatsRadio](https://www.twitch.tv/chillbeatsradio)
 
 ## Requirements
 

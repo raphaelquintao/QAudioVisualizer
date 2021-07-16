@@ -16,213 +16,12 @@ def qprint(*args, color="info", bold=False, blink=False):
     }
     colors['info'] = colors['cyan'] + " - "
 
-    
+
     if color in colors.keys(): print(colors[color], end='')
     if blink: print(colors['blink'], end='')
     if bold: print(colors['bold'], end='')
 
     print(*args, sep=' ', end= colors['reset'] + '\n', flush=True)
-
-
-class Easing(object):
-    from math import sqrt, pow, sin, cos
-    from math import pi as M_PI
-    M_PI_2 = M_PI * 2
-
-    '''
-    original c code:
-    https://raw.githubusercontent.com/warrenm/AHEasing/master/AHEasing/easing.c
-    Copyright (c) 2011, Auerhaus Development, LLC
-    http://sam.zoy.org/wtfpl/COPYING for more details.
-    '''
-
-    #  Modeled after the line y = x
-    def LinearInterpolation(p):
-        return p
-
-    # Modeled after the parabola y = x^2
-    def QuadraticEaseIn(p):
-        return p * p
-
-    # Modeled after the parabola y = -x^2 + 2x
-    def QuadraticEaseOut(p):
-        return -(p * (p - 2))
-
-    # Modeled after the piecewise quadratic
-    # y = (1/2)((2x)^2)             ; [0, 0.5)
-    # y = -(1/2)((2x-1)*(2x-3) - 1) ; [0.5, 1]
-    def QuadraticEaseInOut(p):
-        if (p < 0.5):
-            return 2 * p * p
-        return (-2 * p * p) + (4 * p) - 1
-
-    # Modeled after the cubic y = x^3
-    def CubicEaseIn(p):
-        return p * p * p
-
-    # Modeled after the cubic y = (x - 1)^3 + 1
-    def CubicEaseOut(p):
-        f = (p - 1)
-        return f * f * f + 1
-
-    # Modeled after the piecewise cubic
-    # y = (1/2)((2x)^3)       ; [0, 0.5)
-    # y = (1/2)((2x-2)^3 + 2) ; [0.5, 1]
-    def CubicEaseInOut(p):
-        if (p < 0.5):
-            return 4 * p * p * p
-        else:
-            f = ((2 * p) - 2)
-            return 0.5 * f * f * f + 1
-
-    # Modeled after the quartic x^4
-    def QuarticEaseIn(p):
-        return p * p * p * p
-
-    # Modeled after the quartic y = 1 - (x - 1)^4
-    def QuarticEaseOut(p):
-        f = (p - 1)
-        return f * f * f * (1 - p) + 1
-
-    # Modeled after the piecewise quartic
-    # y = (1/2)((2x)^4)        ; [0, 0.5)
-    # y = -(1/2)((2x-2)^4 - 2) ; [0.5, 1]
-    def QuarticEaseInOut(p) :
-        if (p < 0.5):
-            return 8 * p * p * p * p
-        else:
-            f = (p - 1)
-            return -8 * f * f * f * f + 1
-        
-
-
-    # Modeled after the quintic y = x^5
-    def QuinticEaseIn(p):
-        return p * p * p * p * p
-
-    # Modeled after the quintic y = (x - 1)^5 + 1
-    def QuinticEaseOut(p):
-        f = (p - 1)
-        return f * f * f * f * f + 1
-
-
-    # Modeled after the piecewise quintic
-    # y = (1/2)((2x)^5)       ; [0, 0.5)
-    # y = (1/2)((2x-2)^5 + 2) ; [0.5, 1]
-    def QuinticEaseInOut(p):
-        if (p < 0.5):
-            return 16 * p * p * p * p * p
-        else:
-            f = ((2 * p) - 2)
-            return  0.5 * f * f * f * f * f + 1
-
-    # Modeled after quarter-cycle of sine wave
-    def SineEaseIn(p):
-        return Easing.sin((p - 1) * Easing.M_PI_2) + 1
-
-    # Modeled after quarter-cycle of sine wave (different phase)
-    def SineEaseOut(p):
-        return Easing.sin(p * Easing.M_PI_2)
-
-    # Modeled after half sine wave
-    def SineEaseInOut(p):
-        return 0.5 * (1 - Easing.cos(p * Easing.M_PI))
-
-    # Modeled after shifted quadrant IV of unit circle
-    def CircularEaseIn(p):
-        return 1 - Easing.sqrt(1 - (p * p))
-
-    # Modeled after shifted quadrant II of unit circle
-    def CircularEaseOut(p):
-        return Easing.sqrt((2 - p) * p)
-
-    # Modeled after the piecewise circular function
-    # y = (1/2)(1 - sqrt(1 - 4x^2))           ; [0, 0.5)
-    # y = (1/2)(sqrt(-(2x - 3)*(2x - 1)) + 1) ; [0.5, 1]
-    def CircularEaseInOut(p):
-        if(p < 0.5):
-            return 0.5 * (1 - Easing.sqrt(1 - 4 * (p * p)))
-        else:
-            return 0.5 * (Easing.sqrt(-((2 * p) - 3) * ((2 * p) - 1)) + 1)
-
-    # Modeled after the exponential function y = 2^(10(x - 1))
-    def ExponentialEaseIn(p):
-        return p if (p == 0.0) else Easing.pow(2, 10 * (p - 1))
-
-    # Modeled after the exponential function y = -2^(-10x) + 1
-    def ExponentialEaseOut(p):
-        return p if (p == 1.0) else 1 - Easing.pow(2, -10 * p)
-
-    # Modeled after the piecewise exponential
-    # y = (1/2)2^(10(2x - 1))         ; [0,0.5)
-    # y = -(1/2)*2^(-10(2x - 1))) + 1 ; [0.5,1]
-    def ExponentialEaseInOut(p):
-        if(p == 0.0 or p == 1.0):
-            return p
-        
-        if(p < 0.5):
-            return 0.5 * Easing.pow(2, (20 * p) - 10)
-        else:
-            return -0.5 * Easing.pow(2, (-20 * p) + 10) + 1
-
-    # Modeled after the damped sine wave y = sin(13pi/2*x)*pow(2, 10 * (x - 1))
-    def ElasticEaseIn(p):
-        return Easing.sin(13 * Easing.M_PI_2 * p) * Easing.pow(2, 10 * (p - 1))
-
-    # Modeled after the damped sine wave y = sin(-13pi/2*(x + 1))*pow(2, -10x) + 1
-    def ElasticEaseOut(p):
-        return Easing.sin(-13 * Easing.M_PI_2 * (p + 1)) * Easing.pow(2, -10 * p) + 1
-
-    # Modeled after the piecewise exponentially-damped sine wave:
-    # y = (1/2)*sin(13pi/2*(2*x))*pow(2, 10 * ((2*x) - 1))      ; [0,0.5)
-    # y = (1/2)*(sin(-13pi/2*((2x-1)+1))*pow(2,-10(2*x-1)) + 2) ; [0.5, 1]
-    def ElasticEaseInOut(p):
-        if (p < 0.5):
-            return 0.5 * Easing.sin(13 * Easing.M_PI_2 * (2 * p)) * Easing.pow(2, 10 * ((2 * p) - 1))
-        else:
-            return 0.5 * (Easing.sin(-13 * Easing.M_PI_2 * ((2 * p - 1) + 1)) * Easing.pow(2, -10 * (2 * p - 1)) + 2)
-
-    # Modeled after the overshooting cubic y = x^3-x*sin(x*pi)
-    def BackEaseIn(p):
-        return p * p * p - p * Easing.sin(p * Easing.M_PI)
-
-    # Modeled after overshooting cubic y = 1-((1-x)^3-(1-x)*sin((1-x)*pi))
-    def BackEaseOut(p):
-        f = (1 - p)
-        return 1 - (f * f * f - f * Easing.sin(f * Easing.M_PI))
-
-    # Modeled after the piecewise overshooting cubic function:
-    # y = (1/2)*((2x)^3-(2x)*sin(2*x*pi))           ; [0, 0.5)
-    # y = (1/2)*(1-((1-x)^3-(1-x)*sin((1-x)*pi))+1) ; [0.5, 1]
-    def BackEaseInOut(p):
-        if (p < 0.5):
-            f = 2 * p
-            return 0.5 * (f * f * f - f * Easing.sin(f * Easing.M_PI))
-        else:
-            f = (1 - (2*p - 1))
-            return 0.5 * (1 - (f * f * f - f * Easing.sin(f * Easing.M_PI))) + 0.5
-
-    def BounceEaseIn(p):
-        return 1 - Easing.BounceEaseOut(1 - p)
-
-    def BounceEaseOut(p):
-        if(p < 4/11.0):
-            return (121 * p * p)/16.0
-        
-        elif(p < 8/11.0):
-            return (363/40.0 * p * p) - (99/10.0 * p) + 17/5.0
-        
-        elif(p < 9/10.0):
-            return (4356/361.0 * p * p) - (35442/1805.0 * p) + 16061/1805.0
-        
-        else:
-            return (54/5.0 * p * p) - (513/25.0 * p) + 268/25.0
-
-    def BounceEaseInOut(p):
-        if(p < 0.5):
-            return 0.5 * Easing.BounceEaseIn(p*2)
-        else:
-            return 0.5 * Easing.BounceEaseOut(p * 2 - 1) + 0.5
 
 class FPSMonitor(object):
     from time import time as now
@@ -280,7 +79,7 @@ class QAudio(object):
 
         self.qaudio = self.ctypes.CDLL("%s/%s" % (dir_base, 'libqaudio.so'))
         self.running = False
-    
+
     def __del__(self):
         self.close()
 
@@ -292,7 +91,7 @@ class QAudio(object):
         self.qaudio.read_stream.restype = self.numpy.ctypeslib.ndpointer(dtype=(self.ctypes.c_int), shape=(buffer_size, ))
 
         self.qaudio.open_stream(buffer_size, channels)
-    
+
     def read(self):
         return self.qaudio.read_stream()
 
@@ -306,30 +105,30 @@ class QAudio(object):
 
         # print("Is Open:", self.is_open())
 
-        def thread_main ():
+        def thread_main():
             while self.is_open():
                 # self.time.sleep(0.01)
                 if(callback != None): callback(self.read())
-            
+
             # print("Thread end")
-                
+
 
         self.async_thread = self.threading.Thread(target=thread_main, daemon=True)
-        
+
         if start: self.start_async()
-        
+
     def start_async(self):
-           self.async_thread.start() 
+           self.async_thread.start()
 
 class SoundBars(object):
-    import math 
+    import math
     import numpy as np
     import gi, time, cairo
     gi.require_version('Gtk', '3.0')
     from gi.repository import Gtk, GLib
     from collections import deque
     from scipy import signal
-    
+
     css = """
         .bars {
             background: rgba(83, 0, 0, 0.0);
@@ -356,8 +155,8 @@ class SoundBars(object):
 
     data_buffer_size = 32
     last_read_time = 0
-    
-    normalization_array = None    
+
+    normalization_array = None
 
     stream_new_data = False
 
@@ -437,7 +236,7 @@ class SoundBars(object):
         }
 
         return rgb
-    
+
 
     def _draw_bars(self, widget, cr, fft, fft_slower):
         space = self.spacing / 2
@@ -447,17 +246,17 @@ class SoundBars(object):
         thing_size = self.height * 0.01
 
         cr.set_line_width(border)
-        
+
         c_from = {
             'r' : 0.801600 ,
             'g' : 0.158400 ,
-            'b' : 0.587200 
+            'b' : 0.587200
         }
 
         c_to = {
             'r' : 0.960784 ,
             'g' : 0.266667 ,
-            'b' : 0.431373 
+            'b' : 0.431373
         }
 
         c_from = self.rgb_normalized(204, 40 ,149)
@@ -467,16 +266,16 @@ class SoundBars(object):
 
         # c_from = self.rgb_normalized(253, 254 ,198)
         c_to = self.rgb_normalized(255, 208, 65)
-       
+
 
         height = self.height
-        width = (self.width ) / 2 - space 
-       
+        width = (self.width ) / 2 - space
+
         index = 0;
-        for n in range(len(fft)):            
+        for n in range(len(fft)):
             v = fft[n] + 0.01
             v_slow = fft_slower[n] + 0.01
-            
+
             ni = len(fft) - n
 
             ease = Easing.QuinticEaseOut(min(1, v))
@@ -493,9 +292,9 @@ class SoundBars(object):
             r = self._lerp(c_from['r'], c_to['r'], ease)
             g = self._lerp(c_from['g'], c_to['g'], ease)
             b = self._lerp(c_from['b'], c_to['b'], ease)
-            
+
             cr.set_source_rgba(r, g, b, self.opacity)
-            
+
 
             if(not self.mirror):
                 cr.rectangle(index + space/2,  height - (height * v), line_w, height)
@@ -504,7 +303,7 @@ class SoundBars(object):
                 cr.fill_preserve()
                 cr.set_source_rgba(0, 0, 0, self.opacity /2)
                 cr.stroke()
-                
+
                 index -= space
                 cr.set_source_rgba(0.997333, 0.850119, 0.982568, self.opacity)
                 cr.rectangle(index + space/2,  height - (height * v_slow) - thing_size, line_w, thing_size)
@@ -516,7 +315,7 @@ class SoundBars(object):
                 index += space
                 cr.rectangle(index + space/2,  ( height / 2 - (height / 2 * v)) , line_w, (height  * v) )
 
-            
+
                 cr.fill_preserve()
                 cr.set_source_rgba(0, 0, 0, self.opacity /2)
                 cr.stroke()
@@ -534,17 +333,17 @@ class SoundBars(object):
 
     def _draw_fps(self, widget, cr):
         text = self.FPS.update()
-        
+
         cr.select_font_face("Monospace", self.cairo.FONT_SLANT_NORMAL, self.cairo.FONT_WEIGHT_BOLD)
         cr.set_font_size(13)
-        
+
         allo = widget.get_allocation()
         width, height = (allo.width, allo.height)
 
         margin = 5
 
         (x, y, w, h, dx, dy) = cr.text_extents(text)
-        
+
 
         cr.set_source_rgba(0, 0, 0, 0.8)
         cr.rectangle(width/2 - w/2 - margin, 0, w + margin*2, h + margin*2)
@@ -557,9 +356,9 @@ class SoundBars(object):
         # cr.show_text(text)
 
         cr.set_source_rgba(0.5, 0.9, 0.5, 0.9)
-        cr.move_to(width/2 - w/2, h + margin)    
+        cr.move_to(width/2 - w/2, h + margin)
         cr.show_text(text)
-        
+
 
 
     def on_draw(self, widget, cr):
@@ -569,7 +368,7 @@ class SoundBars(object):
 
         # self._draw_bg(widget, cr)
 
-       
+
         # self.curr_fft = temp
         # self.curr_fft_slower = temp
 
@@ -577,14 +376,14 @@ class SoundBars(object):
         self.curr_fft = self._lerp_arr(self.curr_fft, self.last_fft, Easing.LinearInterpolation(t))
         self.curr_fft_slower = self._lerp_arr3(self.curr_fft_slower, self.curr_fft, Easing.LinearInterpolation(t))
 
-        
+
 
         temp_fft = [*reversed(self.curr_fft), * self.curr_fft]
         temp_fft_slow = [*reversed(self.curr_fft_slower), * self.curr_fft_slower]
- 
+
 
         # print(len(self.curr_fft), self.np.average(self.curr_fft) < 0.001)
- 
+
         # if self.curr_fft is not None or self.np.average(self.curr_fft) > 0.001:
         self._draw_bars(widget, cr, temp_fft, temp_fft_slow)
 
@@ -594,8 +393,8 @@ class SoundBars(object):
         self.last_update = self.now()
 
         return False
-            
 
+    # Do all Maths...
     def _get_fft(self):
         shift = 2
         trim = int(self.bar_qt/2)
@@ -603,22 +402,22 @@ class SoundBars(object):
 
         success = False
         if self.stream_new_data:
-            try:            
+            try:
                 data = self.data_buffer.pop()
 
                 # data = data * self.np.hanning(len(data))
                 fft = self.np.abs(self.np.fft.rfft(data, norm="ortho")[1:])
                 fft_len = len(fft)
-                
+
                 # self.last_max = max(self.last_max, max(fft))
                 # print(self.last_max)
 
-                if(self.normalization_array == None):
+                if self.normalization_array is None:
                     normalization_array = self.np.linspace(1, fft_len/2, int(fft_len * 2.5))
 
 
-                fft_cropped = fft[:trim + shift] 
-                
+                fft_cropped = fft[:trim + shift]
+
                 for i in range(len(fft_cropped)):
                     # fft_cropped[i] = fft_cropped[i] * (1.0 / fft_len) / fft_len
                     fft_cropped[i] = fft_cropped[i] * (1.0 / fft_len) / fft_len * normalization_array[i]
@@ -626,62 +425,59 @@ class SoundBars(object):
 
                 fft_cropped = self._lowpass_filter(fft_cropped, cutoff=3.1, order=1)
 
-                fft_cropped = fft_cropped[shift:] 
+                fft_cropped = fft_cropped[shift:]
 
-        
+
                 self.last_fft = fft_cropped
                 self.last_read_time = self.now()
                 self.stream_new_data = False
                 success = True
 
-            except Exception as e: qprint("SoundBars", "_get_fft ERROR", e) 
+            except Exception as e: qprint("SoundBars", "_get_fft ERROR", e)
 
-        return success, read_delta 
+        return success, read_delta
 
     def _process(self):
         fps_delta = (1000/self.fps)
 
         time_delta = (self.now() - self.last_update)
-        
+
 
         success, read_delta = self._get_fft()
-    
+
         if success:
             self.darea.queue_draw()
 
 
         self.GLib.timeout_add(fps_delta, self._process)
-        
 
 
-    # Helpers    
+
+    # Linear interpolation for arrays
     def _lerp_arr(self, a1, a2, t):
         for i in range(len(a1)):
             a1[i] = max(0.001, (a1[i] + (a2[i] - a1[i]) * t))
-        return a1 
-    
+        return a1
+
     def _lerp_arr3(self, a1, a2, t):
         for i in range(len(a1)):
             v = t
             v = Easing.CubicEaseOut( (a2[i] * 0.05) + 0.01 )
             # print(curr)
-            
+
             if(a1[i] <= a2[i]):
                 a1[i] = a2[i]
             else:
                 a1[i] = (a1[i] + (a2[i] - a1[i]) * v)
                 pass
 
-        return a1 
-
+        return a1
 
     def _lerp(self, a1, a2, t):
         a1 = (a1 + (a2 - a1) * t)
-        return a1 
+        return a1
 
-
-
-
+    # Lowpass filter
     def _lowpass_filter(self, fft, cutoff=3.1, fs=30.0, order=2):
         b, a = self.signal.butter(order, cutoff, btype='low', fs=fs)
         return self.signal.lfilter(b, a, fft)
@@ -706,10 +502,10 @@ class SoundBars(object):
 
 
             self.last_update = self.now()
-            self.last_update2 = self.now() 
+            self.last_update2 = self.now()
 
             self._process()
-                
+
         except Exception as e:
             qprint("SoundBars", "Start ERROR", e)
 
@@ -722,3 +518,200 @@ class SoundBars(object):
         self._create()
         self._init()
 
+# Easing Functions
+# Original c code:
+# https://raw.githubusercontent.com/warrenm/AHEasing/master/AHEasing/easing.c
+class Easing(object):
+    from math import sqrt, pow, sin, cos
+    from math import pi as M_PI
+    M_PI_2 = M_PI * 2
+
+
+
+    #  Modeled after the line y = x
+    def LinearInterpolation(p):
+        return p
+
+    # Modeled after the parabola y = x^2
+    def QuadraticEaseIn(p):
+        return p * p
+
+    # Modeled after the parabola y = -x^2 + 2x
+    def QuadraticEaseOut(p):
+        return -(p * (p - 2))
+
+    # Modeled after the piecewise quadratic
+    # y = (1/2)((2x)^2)             ; [0, 0.5)
+    # y = -(1/2)((2x-1)*(2x-3) - 1) ; [0.5, 1]
+    def QuadraticEaseInOut(p):
+        if (p < 0.5):
+            return 2 * p * p
+        return (-2 * p * p) + (4 * p) - 1
+
+    # Modeled after the cubic y = x^3
+    def CubicEaseIn(p):
+        return p * p * p
+
+    # Modeled after the cubic y = (x - 1)^3 + 1
+    def CubicEaseOut(p):
+        f = (p - 1)
+        return f * f * f + 1
+
+    # Modeled after the piecewise cubic
+    # y = (1/2)((2x)^3)       ; [0, 0.5)
+    # y = (1/2)((2x-2)^3 + 2) ; [0.5, 1]
+    def CubicEaseInOut(p):
+        if (p < 0.5):
+            return 4 * p * p * p
+        else:
+            f = ((2 * p) - 2)
+            return 0.5 * f * f * f + 1
+
+    # Modeled after the quartic x^4
+    def QuarticEaseIn(p):
+        return p * p * p * p
+
+    # Modeled after the quartic y = 1 - (x - 1)^4
+    def QuarticEaseOut(p):
+        f = (p - 1)
+        return f * f * f * (1 - p) + 1
+
+    # Modeled after the piecewise quartic
+    # y = (1/2)((2x)^4)        ; [0, 0.5)
+    # y = -(1/2)((2x-2)^4 - 2) ; [0.5, 1]
+    def QuarticEaseInOut(p) :
+        if (p < 0.5):
+            return 8 * p * p * p * p
+        else:
+            f = (p - 1)
+            return -8 * f * f * f * f + 1
+
+
+
+    # Modeled after the quintic y = x^5
+    def QuinticEaseIn(p):
+        return p * p * p * p * p
+
+    # Modeled after the quintic y = (x - 1)^5 + 1
+    def QuinticEaseOut(p):
+        f = (p - 1)
+        return f * f * f * f * f + 1
+
+
+    # Modeled after the piecewise quintic
+    # y = (1/2)((2x)^5)       ; [0, 0.5)
+    # y = (1/2)((2x-2)^5 + 2) ; [0.5, 1]
+    def QuinticEaseInOut(p):
+        if (p < 0.5):
+            return 16 * p * p * p * p * p
+        else:
+            f = ((2 * p) - 2)
+            return  0.5 * f * f * f * f * f + 1
+
+    # Modeled after quarter-cycle of sine wave
+    def SineEaseIn(p):
+        return Easing.sin((p - 1) * Easing.M_PI_2) + 1
+
+    # Modeled after quarter-cycle of sine wave (different phase)
+    def SineEaseOut(p):
+        return Easing.sin(p * Easing.M_PI_2)
+
+    # Modeled after half sine wave
+    def SineEaseInOut(p):
+        return 0.5 * (1 - Easing.cos(p * Easing.M_PI))
+
+    # Modeled after shifted quadrant IV of unit circle
+    def CircularEaseIn(p):
+        return 1 - Easing.sqrt(1 - (p * p))
+
+    # Modeled after shifted quadrant II of unit circle
+    def CircularEaseOut(p):
+        return Easing.sqrt((2 - p) * p)
+
+    # Modeled after the piecewise circular function
+    # y = (1/2)(1 - sqrt(1 - 4x^2))           ; [0, 0.5)
+    # y = (1/2)(sqrt(-(2x - 3)*(2x - 1)) + 1) ; [0.5, 1]
+    def CircularEaseInOut(p):
+        if(p < 0.5):
+            return 0.5 * (1 - Easing.sqrt(1 - 4 * (p * p)))
+        else:
+            return 0.5 * (Easing.sqrt(-((2 * p) - 3) * ((2 * p) - 1)) + 1)
+
+    # Modeled after the exponential function y = 2^(10(x - 1))
+    def ExponentialEaseIn(p):
+        return p if (p == 0.0) else Easing.pow(2, 10 * (p - 1))
+
+    # Modeled after the exponential function y = -2^(-10x) + 1
+    def ExponentialEaseOut(p):
+        return p if (p == 1.0) else 1 - Easing.pow(2, -10 * p)
+
+    # Modeled after the piecewise exponential
+    # y = (1/2)2^(10(2x - 1))         ; [0,0.5)
+    # y = -(1/2)*2^(-10(2x - 1))) + 1 ; [0.5,1]
+    def ExponentialEaseInOut(p):
+        if(p == 0.0 or p == 1.0):
+            return p
+
+        if(p < 0.5):
+            return 0.5 * Easing.pow(2, (20 * p) - 10)
+        else:
+            return -0.5 * Easing.pow(2, (-20 * p) + 10) + 1
+
+    # Modeled after the damped sine wave y = sin(13pi/2*x)*pow(2, 10 * (x - 1))
+    def ElasticEaseIn(p):
+        return Easing.sin(13 * Easing.M_PI_2 * p) * Easing.pow(2, 10 * (p - 1))
+
+    # Modeled after the damped sine wave y = sin(-13pi/2*(x + 1))*pow(2, -10x) + 1
+    def ElasticEaseOut(p):
+        return Easing.sin(-13 * Easing.M_PI_2 * (p + 1)) * Easing.pow(2, -10 * p) + 1
+
+    # Modeled after the piecewise exponentially-damped sine wave:
+    # y = (1/2)*sin(13pi/2*(2*x))*pow(2, 10 * ((2*x) - 1))      ; [0,0.5)
+    # y = (1/2)*(sin(-13pi/2*((2x-1)+1))*pow(2,-10(2*x-1)) + 2) ; [0.5, 1]
+    def ElasticEaseInOut(p):
+        if (p < 0.5):
+            return 0.5 * Easing.sin(13 * Easing.M_PI_2 * (2 * p)) * Easing.pow(2, 10 * ((2 * p) - 1))
+        else:
+            return 0.5 * (Easing.sin(-13 * Easing.M_PI_2 * ((2 * p - 1) + 1)) * Easing.pow(2, -10 * (2 * p - 1)) + 2)
+
+    # Modeled after the overshooting cubic y = x^3-x*sin(x*pi)
+    def BackEaseIn(p):
+        return p * p * p - p * Easing.sin(p * Easing.M_PI)
+
+    # Modeled after overshooting cubic y = 1-((1-x)^3-(1-x)*sin((1-x)*pi))
+    def BackEaseOut(p):
+        f = (1 - p)
+        return 1 - (f * f * f - f * Easing.sin(f * Easing.M_PI))
+
+    # Modeled after the piecewise overshooting cubic function:
+    # y = (1/2)*((2x)^3-(2x)*sin(2*x*pi))           ; [0, 0.5)
+    # y = (1/2)*(1-((1-x)^3-(1-x)*sin((1-x)*pi))+1) ; [0.5, 1]
+    def BackEaseInOut(p):
+        if (p < 0.5):
+            f = 2 * p
+            return 0.5 * (f * f * f - f * Easing.sin(f * Easing.M_PI))
+        else:
+            f = (1 - (2*p - 1))
+            return 0.5 * (1 - (f * f * f - f * Easing.sin(f * Easing.M_PI))) + 0.5
+
+    def BounceEaseIn(p):
+        return 1 - Easing.BounceEaseOut(1 - p)
+
+    def BounceEaseOut(p):
+        if(p < 4/11.0):
+            return (121 * p * p)/16.0
+
+        elif(p < 8/11.0):
+            return (363/40.0 * p * p) - (99/10.0 * p) + 17/5.0
+
+        elif(p < 9/10.0):
+            return (4356/361.0 * p * p) - (35442/1805.0 * p) + 16061/1805.0
+
+        else:
+            return (54/5.0 * p * p) - (513/25.0 * p) + 268/25.0
+
+    def BounceEaseInOut(p):
+        if(p < 0.5):
+            return 0.5 * Easing.BounceEaseIn(p*2)
+        else:
+            return 0.5 * Easing.BounceEaseOut(p * 2 - 1) + 0.5

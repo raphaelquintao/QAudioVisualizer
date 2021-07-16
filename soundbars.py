@@ -45,7 +45,7 @@ class SoundWindow(Gtk.Window):
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(self.css.encode('utf-8'))
         self.get_style_context().add_provider_for_screen(self.get_screen(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
-        
+
         # Bind Events
         self.connect("destroy", self._on_close)
         self.connect("button-press-event", self.on_button_press)
@@ -75,7 +75,7 @@ class SoundWindow(Gtk.Window):
         overlay.add_overlay(self.SB.container)
 
 
-        
+
         # thread = threading.Thread(target=self.example_target)
         # thread.daemon = True
         # thread.start()
@@ -89,7 +89,7 @@ class SoundWindow(Gtk.Window):
         except: pass
 
         Gtk.main_quit()
-    
+
     def on_button_press(self, widget, ev):
         if ev.button in (1,3):
             self.begin_move_drag(ev.button, ev.x_root, ev.y_root, ev.time)
@@ -105,17 +105,17 @@ class SoundWindow(Gtk.Window):
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--size', type=str, default="1000x300", dest='size', help='Window Size (default: 1600x900) ')
-parser.add_argument('--max_fps', type=int, default=30, dest='max_fps', help='Max FPS')
+parser.add_argument('--max_fps', '--max-fps', type=int, default=60, dest='max_fps', help='Max FPS')
 parser.add_argument('--bars', type=int, default=80, dest='bars', help='Number of bars')
 parser.add_argument('--space', type=int, default=2, dest='space', help='Space Between Bars')
 parser.add_argument('--opacity', type=float, default=0.8, dest='opacity', help='Overall Opacity')
 parser.add_argument('--fps', '--fps_show', action=argparse._StoreTrueAction, dest='fps_show', help='Show FPS')
-parser.add_argument('--no_mirror', action=argparse._StoreFalseAction, dest='mirror', help='Remove Mirror Effect')
+parser.add_argument('--no_mirror', '--no-mirror', action=argparse._StoreFalseAction, dest='mirror', help='Remove Mirror Effect')
 args = parser.parse_args()
 
 w, h = (900, 300)
 
-try: 
+try:
     w, h = args.size.split('x')
 except: pass
 

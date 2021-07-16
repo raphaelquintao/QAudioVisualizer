@@ -57,6 +57,5 @@ int *get_resp() {
 
 //    input_pulse2(&audio, resp, 0);
 
-
     return resp;
 }

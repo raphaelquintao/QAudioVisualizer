@@ -13,6 +13,12 @@ Demo no Mirror:
 Demo Mirror:
 [mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo1.mp4)
 
+## How it works
+
+1. Basically you need to get the raw output from the sound card (C does that very well). 
+2. Run a [Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform)
+3. Then a [Low-pass filter](https://en.wikipedia.org/wiki/Low-pass_filter)
+4. Finally, some [Linear interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) to draw
 
 ## Requirements
 

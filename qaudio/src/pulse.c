@@ -125,10 +125,6 @@ pa_simple *open_input_stream(void *data, int *resp) {
 
     int buffer_size = audio->FFTbufferSize;
 
-
-
-
-
     /* The sample type to use */
     pa_sample_spec ss = {
             .format = PA_SAMPLE_S16LE,
@@ -192,16 +188,6 @@ void read_input_stream(pa_simple *s, void *data, int *resp) {
         if (n == audio->resp_size) n = 0;
 
     }
-
-
-//    for (int c = 0; c < buffer_size/2; c++) {
-//        if (audio->channels == 1) {
-//            resp[c] = (audio->audio_out_l[c]);
-//        } else {
-//            resp[c] = (audio->audio_out_l[c] + audio->audio_out_r[c]) / 2;
-//        }
-//    }
-
 
 }
 

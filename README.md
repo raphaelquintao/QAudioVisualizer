@@ -13,6 +13,9 @@ Demo no Mirror:
 Demo Mirror:
 [mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/demo1.mp4)
 
+Live Demo: 
+[twitch.tv/chillbeatsradio](https://www.twitch.tv/chillbeatsradio)
+
 ## How it works
 
 1. Basically you need to get the raw output from the sound card (C does that very well). 

@@ -5,7 +5,7 @@ Non GPU and Low CPU usage GTK Audio Visualizer
 |Normal|Mirror|
 |---|---|
 ![normal](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/normal.gif) | ![mirror](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/mirror.gif)
-![mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/normal.mp4) - [flv](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/normal.flv) | [mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/mirror.mp4) - [flv](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/mirror.flv)
+[mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/normal.mp4) - [flv](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/normal.flv) | [mp4](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/mirror.mp4) - [flv](https://raw.githubusercontent.com/raphaelquintao/QAudioVisualizer/master/demo/mirror.flv)
 
 Live Demo:
 [twitch.tv/chillbeatsradio](https://www.twitch.tv/chillbeatsradio)

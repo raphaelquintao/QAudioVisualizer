@@ -1,6 +1,6 @@
 QAudioVisualizer
 ===
-Non GPU and Low CPU usage GTK Audio Visualizer
+Non GPU and Low CPU usage GTK Audio Visualizer for Linux
 
 |Normal|Mirror|
 |---|---|
